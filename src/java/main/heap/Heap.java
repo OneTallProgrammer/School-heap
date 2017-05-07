@@ -16,13 +16,11 @@ public class Heap {
         try {
             //sequential insertion
             if(option.equals("s")){
-                for(int element : data){
-                    insertNewNode(element);
-                }
+                sequentialInsertion(data);
             }
             //optimal insertion
             else if(option.equals("o")){
-
+                optimalInsertion(data);
             }
             else{
                 throw new InvalidHeapConstructorOptionException(option);
@@ -34,6 +32,23 @@ public class Heap {
 
     public int getSwaps(){
         return this.swaps;
+    }
+
+    public void sequentialInsertion(int[] data){
+        for(int element : data){
+            insertNewNode(element);
+        }
+    }
+
+    public void optimalInsertion(int[] data){
+        this.nodes = data;
+        this.openIndex = this.nodes.length;
+        int lastLeaf = this.openIndex - 1;
+
+        for(int i = (lastLeaf - 1)/2; i >= 0; i--){
+            reheapifyDown(i);
+        }
+
     }
 
     public void insertNewNode(int node){
@@ -109,10 +124,6 @@ public class Heap {
 
         this.swaps++;
     }
-
-    //insert optimally
-
-    //remove
 
     public void printByLevel(int range) {
         if(range > this.openIndex){

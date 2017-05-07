@@ -8,11 +8,10 @@ public class HeapMain {
     public static void main(String[] args) {
         ProjectArray pArray = new ProjectArray(100);
 
-        Heap heap = new Heap(pArray.getOrderedArray(), "s");
+        Heap heap = new Heap(pArray.getOrderedArray(), "o");
 
-        for(int i = 0; i < 10; i++){
-            heap.pop();
-        }
+        System.out.println("Swaps: " + heap.getSwaps());
+
 
         heap.printByLevel(10);
 
