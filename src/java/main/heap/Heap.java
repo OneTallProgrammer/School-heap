@@ -70,18 +70,36 @@ public class Heap {
         int left = 2*index + 1;
         int right = 2*index + 2;
 
-        if(this.nodes[right] > this.nodes[left] && left < this.openIndex){
+        // if right & left child exists
+        if(right < this.openIndex){
+            // check both
+            if(this.nodes[left] < this.nodes[right]){
+                if(this.nodes[index] < this.nodes[right]){
+                    swapNodes(index, right);
+                    reheapifyDown(right);
+                }
+            }
+            else if(this.nodes[index] < this.nodes[left]){
+                swapNodes(index, left);
+                reheapifyDown(left);
+            }
+        }
+        // if only left child exists
+        else if(left < this.openIndex){
+            // only check left
             if(this.nodes[index] < this.nodes[left]){
                 swapNodes(index, left);
                 reheapifyDown(left);
             }
         }
-        else{
-            if(this.nodes[index] < this.nodes[right] && right < this.openIndex){
-                swapNodes(index, right);
-                reheapifyDown(right);
-            }
+        // node at index has no children (base case)
+        else {
+            // neither child exists
+            return;
         }
+
+        // by the rules of a complete tree, if there is no left child,
+        // the node has reached the maximum depth of the tree
     }
 
     private void swapNodes(int a, int b){

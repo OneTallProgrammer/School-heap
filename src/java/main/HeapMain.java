@@ -6,11 +6,11 @@ import heap.Heap;
 
 public class HeapMain {
     public static void main(String[] args) {
-        ProjectArray pArray = new ProjectArray(5);
+        ProjectArray pArray = new ProjectArray(100);
 
         Heap heap = new Heap(pArray.getOrderedArray(), "s");
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 10; i++){
             heap.pop();
         }
 
