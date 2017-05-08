@@ -2,6 +2,7 @@ package arrays;
 
 /**
  * Created by Joseph on 5/7/2017.
+ * a special array class with added operations that are benefitial to the project
  */
 
 import java.util.Arrays;
@@ -19,6 +20,9 @@ public class ProjectArray {
         }
     }
 
+    /*
+    @return: an ordered array with elements 1 - size of project array
+     */
     public int[] getOrderedArray() {
         return this.orderedArray;
     }
@@ -38,6 +42,8 @@ public class ProjectArray {
      */
     public int[] getRandomizedArray(){
         int[] randomizedArray = Arrays.copyOf(this.orderedArray, this.orderedArray.length);
+
+        // shuffling with a Fisher - Yates shuffle
         for(int i = 0; i < randomizedArray.length; i++){
             int rand = ThreadLocalRandom.current().nextInt(0, randomizedArray.length);
 
