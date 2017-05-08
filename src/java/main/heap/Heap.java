@@ -4,6 +4,9 @@ package heap;
  * Created by Joseph on 5/7/2017.
  */
 import exceptions.*;
+
+import java.util.Arrays;
+
 public class Heap {
     private int[] nodes;
     private int openIndex;
@@ -41,7 +44,7 @@ public class Heap {
     }
 
     public void optimalInsertion(int[] data){
-        this.nodes = data;
+        this.nodes = Arrays.copyOf(data, this.nodes.length);
         this.openIndex = this.nodes.length;
         int lastLeaf = this.openIndex - 1;
 
@@ -73,7 +76,6 @@ public class Heap {
         }
         else{
             int parent = (index - 1)/2;
-            System.out.println("Parent = " + parent);
             if(this.nodes[index] > this.nodes[parent]){
                 swapNodes(index, parent);
                 reheapifyUp(parent);
@@ -131,7 +133,7 @@ public class Heap {
         }
 
         for(int i = 0; i < range; i++){
-            System.out.println(this.nodes[i]);
+            System.out.print(this.nodes[i] + ", ");
         }
     }
 }
